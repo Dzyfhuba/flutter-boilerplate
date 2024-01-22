@@ -23,23 +23,48 @@ class _UploadImageState extends State<UploadImage> {
       children: [
         Stack(
           children: [
-            Container(
-              height: 1500,
-              constraints: const BoxConstraints(
-                maxHeight: 150,
-                maxWidth: double.maxFinite,
-              ),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                image: DecorationImage(
-                  image: _imageList.isEmpty
-                      ? const NetworkImage(
-                          'https://uploads.dailydot.com/2018/10/olli-the-polite-cat.jpg?q=65&auto=format&w=2270&ar=2:1&fit=crop',
-                        )
-                      : FileImage(
-                          File(_imageList[0].path),
-                        ) as ImageProvider,
-                  fit: BoxFit.cover,
+            GestureDetector(
+              onTapUp: (details) {
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          title: const Text('Image'),
+                          content: Container(
+                            height: 300,
+                            width: 300,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: _imageList.isEmpty
+                                    ? const NetworkImage(
+                                        'https://uploads.dailydot.com/2018/10/olli-the-polite-cat.jpg?q=65&auto=format&w=2270&ar=2:1&fit=crop',
+                                      )
+                                    : FileImage(
+                                        File(_imageList[0].path),
+                                      ) as ImageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ));
+              },
+              child: Container(
+                height: 1500,
+                constraints: const BoxConstraints(
+                  maxHeight: 150,
+                  maxWidth: double.maxFinite,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  image: DecorationImage(
+                    image: _imageList.isEmpty
+                        ? const NetworkImage(
+                            'https://uploads.dailydot.com/2018/10/olli-the-polite-cat.jpg?q=65&auto=format&w=2270&ar=2:1&fit=crop',
+                          )
+                        : FileImage(
+                            File(_imageList[0].path),
+                          ) as ImageProvider,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
@@ -52,7 +77,7 @@ class _UploadImageState extends State<UploadImage> {
                     backgroundColor: MaterialStatePropertyAll(
                         Theme.of(context).colorScheme.surface),
                   ),
-                  icon: Icon(Icons.delete),
+                  icon: const Icon(Icons.delete),
                 ))
           ],
         ),

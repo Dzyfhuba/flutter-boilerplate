@@ -45,7 +45,13 @@ ThemeData mainThemeData(context) {
         ),
       ),
     ),
-
+    dialogTheme: DialogTheme(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      elevation: 0,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+    ),
     // text align left
     colorScheme: lightColorScheme,
     useMaterial3: true,
