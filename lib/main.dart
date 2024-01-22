@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/components/gap.dart';
 import 'package:flutter_boilerplate/components/upload_image.dart';
 import 'package:flutter_boilerplate/variables/theme_data.dart';
 
@@ -110,17 +111,149 @@ class _MyHomePageState extends State<MyHomePage> {
             Card(
               child: Container(
                 width: double.maxFinite,
-                padding: EdgeInsets.all(24),
+                padding: const EdgeInsets.all(24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Image',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
 
                     // upload image
-                    UploadImage(),
+                    const UploadImage(),
+                    const Gap(10),
+                    const ExpansionTile(
+                      title: Text('Category A'),
+                      children: [
+                        Text('asdasd'),
+                        Text('asdasd'),
+                        Text('asdasd'),
+                      ],
+                    ),
+                    const Gap(10),
+                    const ExpansionTile(
+                      title: Text('Caption A'),
+                      children: [
+                        Text('asdasd'),
+                        Text('asdasd'),
+                        Text('asdasd'),
+                      ],
+                    ),
+                    const Gap(10),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: const ButtonStyle(
+                        minimumSize: MaterialStatePropertyAll(
+                          Size(double.maxFinite, 50),
+                        ),
+                      ),
+                      child: const Text('Add Another Image'),
+                    )
+                  ],
+                ),
+              ),
+            ),
+
+            // fourth component: Defect Category
+            const Card(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Defect Category',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    ExpansionTile(
+                      title: Text('Category A'),
+                      children: [
+                        Text('asdasd'),
+                        Text('asdasd'),
+                        Text('asdasd'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            // fifth component: Defect code
+            const Card(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Defect Code and defect name',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    ExpansionTile(
+                      title: Text('Code'),
+                      children: [
+                        Text('asdasd'),
+                        Text('asdasd'),
+                        Text('asdasd'),
+                      ],
+                    ),
+                    Gap(10),
+                    ExpansionTile(
+                      title: Text('Defect Name'),
+                      children: [
+                        Text('asdasd'),
+                        Text('asdasd'),
+                        Text('asdasd'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            // sixth component: Defect Level
+            const Card(
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Defect Level',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    ExpansionTile(
+                      title: Text('Level A'),
+                      children: [
+                        Text('asdasd'),
+                        Text('asdasd'),
+                        Text('asdasd'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Notes',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    TextField(
+                      controller: _noteController,
+                      decoration: const InputDecoration(
+                        labelText: 'Add a note...',
+                      ),
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                    ),
                   ],
                 ),
               ),

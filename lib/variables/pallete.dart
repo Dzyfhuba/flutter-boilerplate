@@ -53,3 +53,5 @@ const ColorScheme darkColorScheme = ColorScheme(
   onError: Color(0xFF000000),
   brightness: Brightness.dark,
 );
+
+// custom material theme

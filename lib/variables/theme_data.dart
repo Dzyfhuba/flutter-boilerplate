@@ -52,6 +52,22 @@ ThemeData mainThemeData(context) {
       elevation: 0,
       backgroundColor: Theme.of(context).colorScheme.surface,
     ),
+    expansionTileTheme: ExpansionTileThemeData(
+      iconColor: Theme.of(context).colorScheme.primary,
+      textColor: Theme.of(context).colorScheme.primary,
+      shape: ContinuousRectangleBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
+        side: BorderSide(
+          color: Colors.grey.shade300,
+        ),
+      ),
+      collapsedShape: ContinuousRectangleBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
+        side: BorderSide(
+          color: Colors.grey.shade300,
+        ),
+      ),
+    ),
     // text align left
     colorScheme: lightColorScheme,
     useMaterial3: true,
