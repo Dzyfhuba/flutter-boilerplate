@@ -68,6 +68,10 @@ ThemeData mainThemeData(context) {
         ),
       ),
     ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      elevation: 0,
+      backgroundColor: Theme.of(context).colorScheme.background,
+    ),
     // text align left
     colorScheme: lightColorScheme,
     useMaterial3: true,

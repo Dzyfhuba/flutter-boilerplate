@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/components/gap.dart';
 import 'package:flutter_boilerplate/components/upload_image.dart';
 import 'package:flutter_boilerplate/variables/theme_data.dart';
+import 'package:image_picker/image_picker.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController _firstController = TextEditingController();
   TextEditingController _noteController = TextEditingController();
+  late XFile? _image;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +66,18 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.arrow_back),
+          label: 'Previous',
+          tooltip: 'Previous',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.arrow_forward),
+          label: 'Next',
+          tooltip: 'Next',
+        ),
+      ]),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(8),
         primary: true,
@@ -121,7 +135,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
 
                     // upload image
-                    const UploadImage(),
+                    UploadImage(
+                      onChanged: (files) {
+                        setState(() {
+                          _image = files[0];
+                        });
+                      },
+                    ),
                     const Gap(10),
                     const ExpansionTile(
                       title: Text('Category A'),

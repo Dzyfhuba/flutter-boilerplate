@@ -6,7 +6,9 @@ import 'package:flutter_boilerplate/components/gap.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UploadImage extends StatefulWidget {
-  const UploadImage({Key? key}) : super(key: key);
+  final void Function(List<XFile>) onChanged;
+
+  const UploadImage({super.key, required this.onChanged});
 
   @override
   State<UploadImage> createState() => _UploadImageState();
@@ -68,104 +70,121 @@ class _UploadImageState extends State<UploadImage> {
                 ),
               ),
             ),
-            Positioned(
-                right: 5,
-                bottom: 5,
-                child: IconButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(
-                        Theme.of(context).colorScheme.surface),
+            _imageList.isEmpty
+                ? Container()
+                : Positioned(
+                    right: 5,
+                    bottom: 5,
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _imageList.clear();
+                        });
+
+                        widget.onChanged(_imageList);
+                      },
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                            Theme.of(context).colorScheme.surface),
+                      ),
+                      icon: const Icon(Icons.delete),
+                    ),
                   ),
-                  icon: const Icon(Icons.delete),
-                ))
           ],
         ),
         const Gap(10),
-        DottedBorder(
-          borderType: BorderType.RRect,
-          radius: const Radius.circular(8),
-          color: Theme.of(context).colorScheme.primary,
-          child: ElevatedButton.icon(
-            style: ButtonStyle(
-              minimumSize: MaterialStateProperty.all<Size>(
-                const Size(double.infinity, 50),
-              ),
-              backgroundColor:
-                  const MaterialStatePropertyAll(Colors.transparent),
-              foregroundColor: MaterialStatePropertyAll(
-                  Theme.of(context).colorScheme.onSurface),
-            ),
-            onPressed: () {
-              showBottomSheet(
-                context: context,
-                builder: (context) => Container(
-                  height: 100,
-                  color: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () async {
-                              final XFile? image = await _picker.pickImage(
-                                source: ImageSource.camera,
-                              );
-                              if (image != null) {
-                                setState(() {
-                                  _imageList.add(image);
-                                });
-                              }
-
-                              Future(() => Navigator.pop(context));
-                            },
-                            icon: const Icon(
-                              Icons.camera_alt,
-                              color: Colors.black54,
-                            ),
-                          ),
-                          const Text('Camera'),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                            onPressed: () async {
-                              final XFile? image = await _picker.pickMedia(
-                                  // source: ImageSource.gallery,
-                                  );
-
-                              if (image != null) {
-                                setState(() {
-                                  _imageList.add(image);
-                                });
-                              }
-
-                              Future(() => Navigator.pop(context));
-                            },
-                            icon: const Icon(
-                              Icons.photo,
-                              color: Colors.black54,
-                            ),
-                          ),
-                          const Text('Gallery'),
-                        ],
-                      ),
-                    ],
+        _imageList.isEmpty
+            ? DottedBorder(
+                borderType: BorderType.RRect,
+                radius: const Radius.circular(8),
+                color: Theme.of(context).colorScheme.primary,
+                child: ElevatedButton.icon(
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all<Size>(
+                      const Size(double.infinity, 50),
+                    ),
+                    backgroundColor:
+                        const MaterialStatePropertyAll(Colors.transparent),
+                    foregroundColor: MaterialStatePropertyAll(
+                        Theme.of(context).colorScheme.onSurface),
                   ),
+                  onPressed: () {
+                    showBottomSheet(
+                      context: context,
+                      builder: (context) => Container(
+                        height: 100,
+                        color: Colors.white,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  onPressed: () async {
+                                    final XFile? image =
+                                        await _picker.pickImage(
+                                      source: ImageSource.camera,
+                                    );
+                                    if (image != null) {
+                                      setState(() {
+                                        _imageList.add(image);
+                                      });
+
+                                      widget.onChanged(_imageList);
+                                    }
+
+                                    Future(() => Navigator.pop(context));
+                                  },
+                                  icon: const Icon(
+                                    Icons.camera_alt,
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                                const Text('Camera'),
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  onPressed: () async {
+                                    final XFile? image =
+                                        await _picker.pickMedia(
+                                            // source: ImageSource.gallery,
+                                            );
+
+                                    if (image != null) {
+                                      setState(() {
+                                        _imageList.add(image);
+                                      });
+
+                                      widget.onChanged(_imageList);
+                                    }
+
+                                    Future(() => Navigator.pop(context));
+                                  },
+                                  icon: const Icon(
+                                    Icons.photo,
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                                const Text('Gallery'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.add_photo_alternate,
+                    color: Colors.black54,
+                  ),
+                  label: const Text('Add or take pictures'),
                 ),
-              );
-            },
-            icon: const Icon(
-              Icons.add_photo_alternate,
-              color: Colors.black54,
-            ),
-            label: const Text('Add or take pictures'),
-          ),
-        )
+              )
+            : Container(),
       ],
     );
   }
