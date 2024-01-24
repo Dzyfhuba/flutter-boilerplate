@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 
 class SelectWeight extends StatefulWidget {
-  const SelectWeight({Key? key}) : super(key: key);
+  final void Function(WeightSet) onSelected;
+  final Set<WeightSet> selected;
+
+  const SelectWeight({
+    Key? key,
+    required this.onSelected,
+    this.selected = const {WeightSet.style},
+  }) : super(key: key);
 
   @override
-  _SelectWeightState createState() => _SelectWeightState();
+  State<SelectWeight> createState() => _SelectWeightState();
 }
 
 enum WeightSet {
-  xs,
-  s,
-  m,
-  l,
-  xl,
-  xxl,
-  xxxl,
-  xxxxl,
-  xxxxxl,
+  style,
+  req,
+  sample,
 }
 
 class _SelectWeightState extends State<SelectWeight> {
-  final Set<WeightSet> _selected = {WeightSet.xs};
+  final Set<WeightSet> _selected = {WeightSet.style};
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +36,9 @@ class _SelectWeightState extends State<SelectWeight> {
               SegmentedButton<WeightSet>(
                 showSelectedIcon: false,
                 segments: const [
-                  ButtonSegment(value: WeightSet.xs, label: Text('XS')),
-                  ButtonSegment(value: WeightSet.s, label: Text('S')),
-                  ButtonSegment(value: WeightSet.m, label: Text('M')),
-                  ButtonSegment(value: WeightSet.l, label: Text('L')),
-                  ButtonSegment(value: WeightSet.xl, label: Text('XL')),
-                  ButtonSegment(value: WeightSet.xxl, label: Text('XXL')),
-                  ButtonSegment(value: WeightSet.xxxl, label: Text('XXXL')),
-                  ButtonSegment(value: WeightSet.xxxxl, label: Text('XXXXL')),
-                  ButtonSegment(value: WeightSet.xxxxxl, label: Text('XXXXXL')),
+                  ButtonSegment(value: WeightSet.style, label: Text('Style')),
+                  ButtonSegment(value: WeightSet.req, label: Text('Req')),
+                  ButtonSegment(value: WeightSet.sample, label: Text('Sample')),
                 ],
                 selected: _selected,
                 onSelectionChanged: (Set<WeightSet> p0) {
@@ -51,10 +46,11 @@ class _SelectWeightState extends State<SelectWeight> {
                     _selected.clear();
                     _selected.add(p0.first);
                   });
+                  widget.onSelected(p0.first);
                 },
               ),
             ],
-          )
+          ),
         ],
       ),
     );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/components/gap.dart';
+import 'package:flutter_boilerplate/components/select_measurement.dart';
+import 'package:flutter_boilerplate/components/select_size.dart';
 import 'package:flutter_boilerplate/components/select_weight.dart';
 import 'package:flutter_boilerplate/components/upload_image.dart';
 import 'package:flutter_boilerplate/variables/theme_data.dart';
@@ -85,7 +87,21 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            SelectWeight(),
+            SelectSize(
+              onSelected: (p0) {
+                debugPrint(p0.name);
+              },
+            ),
+
+            SelectWeight(
+              onSelected: (p0) {
+                debugPrint(p0.name);
+              },
+            ),
+
+            SelectMeasurement(onSelected: (p0) {
+              debugPrint(p0.name);
+            }),
 
             // first component
             Card(
