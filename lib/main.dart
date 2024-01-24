@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/components/gap.dart';
+import 'package:flutter_boilerplate/components/select_weight.dart';
 import 'package:flutter_boilerplate/components/upload_image.dart';
 import 'package:flutter_boilerplate/variables/theme_data.dart';
 import 'package:image_picker/image_picker.dart';
@@ -84,6 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
+            SelectWeight(),
+
             // first component
             Card(
               child: Padding(
