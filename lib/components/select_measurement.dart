@@ -5,10 +5,10 @@ class SelectMeasurement extends StatefulWidget {
   final Set<MeasurementSet> selected;
 
   const SelectMeasurement({
-    Key? key,
+    super.key,
     required this.onSelected,
     this.selected = const {MeasurementSet.pom},
-  }) : super(key: key);
+  });
 
   @override
   State<SelectMeasurement> createState() => _SelectMeasurementState();

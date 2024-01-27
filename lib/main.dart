@@ -3,6 +3,7 @@ import 'package:flutter_boilerplate/components/gap.dart';
 import 'package:flutter_boilerplate/components/select_measurement.dart';
 import 'package:flutter_boilerplate/components/select_size.dart';
 import 'package:flutter_boilerplate/components/select_weight.dart';
+import 'package:flutter_boilerplate/components/style_table.dart';
 import 'package:flutter_boilerplate/components/upload_image.dart';
 import 'package:flutter_boilerplate/variables/theme_data.dart';
 import 'package:image_picker/image_picker.dart';
@@ -103,6 +104,10 @@ class _MyHomePageState extends State<MyHomePage> {
               debugPrint(p0.name);
             }),
             const Gap(10),
+
+            // DataTable
+            StyleTable(),
+
             // first component
             Card(
               child: Padding(
