@@ -27,36 +27,29 @@ class _SelectMeasurementState extends State<SelectMeasurement> {
   @override
   Widget build(BuildContext context) {
     // horizontal listview
-    return Container(
+    return SizedBox(
       height: 50,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          Row(
-            children: [
-              SegmentedButton<MeasurementSet>(
-                showSelectedIcon: false,
-                segments: const [
-                  ButtonSegment(value: MeasurementSet.pom, label: Text('POM')),
-                  ButtonSegment(value: MeasurementSet.req, label: Text('Req')),
-                  ButtonSegment(
-                      value: MeasurementSet.tolerance,
-                      label: Text('Tolerance')),
-                  ButtonSegment(
-                      value: MeasurementSet.sample, label: Text('Sample')),
-                ],
-                selected: _selected,
-                onSelectionChanged: (Set<MeasurementSet> p0) {
-                  setState(() {
-                    _selected.clear();
-                    _selected.add(p0.first);
-                  });
-                  widget.onSelected(p0.first);
-                },
-              ),
-            ],
+      width: double.infinity,
+      child: SegmentedButton<MeasurementSet>(
+        showSelectedIcon: false,
+        segments: const [
+          ButtonSegment(
+            value: MeasurementSet.pom,
+            label: Text('POM'),
           ),
+          ButtonSegment(value: MeasurementSet.req, label: Text('Req')),
+          ButtonSegment(
+              value: MeasurementSet.tolerance, label: Text('Tolerance')),
+          ButtonSegment(value: MeasurementSet.sample, label: Text('Sample')),
         ],
+        selected: _selected,
+        onSelectionChanged: (Set<MeasurementSet> p0) {
+          setState(() {
+            _selected.clear();
+            _selected.add(p0.first);
+          });
+          widget.onSelected(p0.first);
+        },
       ),
     );
   }

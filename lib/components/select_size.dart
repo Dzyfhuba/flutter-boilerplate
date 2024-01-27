@@ -32,40 +32,37 @@ class _SelectSizeState extends State<SelectSize> {
   @override
   Widget build(BuildContext context) {
     // horizontal listview
-    return Container(
+    return SizedBox(
       height: 50,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          Row(
-            children: [
-              SegmentedButton<SelectSizeType>(
-                showSelectedIcon: false,
-                segments: const [
-                  ButtonSegment(value: SelectSizeType.xs, label: Text('XS')),
-                  ButtonSegment(value: SelectSizeType.s, label: Text('S')),
-                  ButtonSegment(value: SelectSizeType.m, label: Text('M')),
-                  ButtonSegment(value: SelectSizeType.l, label: Text('L')),
-                  ButtonSegment(value: SelectSizeType.xl, label: Text('XL')),
-                  ButtonSegment(value: SelectSizeType.xxl, label: Text('XXL')),
-                  ButtonSegment(
-                      value: SelectSizeType.xxxl, label: Text('XXXL')),
-                  ButtonSegment(
-                      value: SelectSizeType.xxxxl, label: Text('XXXXL')),
-                  ButtonSegment(
-                      value: SelectSizeType.xxxxxl, label: Text('XXXXXL')),
-                ],
-                selected: _selected,
-                onSelectionChanged: (Set<SelectSizeType> p0) {
-                  setState(() {
-                    _selected.clear();
-                    _selected.add(p0.first);
-                  });
-
-                  widget.onSelected(p0.first);
-                },
-              ),
+          SegmentedButton<SelectSizeType>(
+            showSelectedIcon: false,
+            style: const ButtonStyle(
+              visualDensity: VisualDensity(horizontal: -1),
+            ),
+            segments: const [
+              ButtonSegment(value: SelectSizeType.xs, label: Text('XS')),
+              ButtonSegment(value: SelectSizeType.s, label: Text('S')),
+              ButtonSegment(value: SelectSizeType.m, label: Text('M')),
+              ButtonSegment(value: SelectSizeType.l, label: Text('L')),
+              ButtonSegment(value: SelectSizeType.xl, label: Text('XL')),
+              ButtonSegment(value: SelectSizeType.xxl, label: Text('XXL')),
+              ButtonSegment(value: SelectSizeType.xxxl, label: Text('XXXL')),
+              ButtonSegment(value: SelectSizeType.xxxxl, label: Text('XXXXL')),
+              ButtonSegment(
+                  value: SelectSizeType.xxxxxl, label: Text('XXXXXL')),
             ],
+            selected: _selected,
+            onSelectionChanged: (Set<SelectSizeType> p0) {
+              setState(() {
+                _selected.clear();
+                _selected.add(p0.first);
+              });
+
+              widget.onSelected(p0.first);
+            },
           )
         ],
       ),

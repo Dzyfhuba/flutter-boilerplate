@@ -92,17 +92,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 debugPrint(p0.name);
               },
             ),
-
+            const Gap(10),
             SelectWeight(
               onSelected: (p0) {
                 debugPrint(p0.name);
               },
             ),
-
+            const Gap(10),
             SelectMeasurement(onSelected: (p0) {
               debugPrint(p0.name);
             }),
-
+            const Gap(10),
             // first component
             Card(
               child: Padding(
