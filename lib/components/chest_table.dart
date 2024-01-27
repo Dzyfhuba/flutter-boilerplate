@@ -1,46 +1,67 @@
 import 'package:flutter/material.dart';
 
-class StyleTable extends StatefulWidget {
+class ChestTable extends StatefulWidget {
   // final List<String> columns;
   // final List<List<String>> data;
 
   // const StyleTable({super.key, this.columns = const [], required this.data});
-  const StyleTable({super.key});
+  const ChestTable({super.key});
 
   @override
-  State<StatefulWidget> createState() => _StyleTableState();
+  State<StatefulWidget> createState() => _ChestTableState();
 }
 
-// List<String> defaultColumns = ['a', 'b', 'c', 'd'];
+// List<String> _defaultColumns = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
 List<String> _defaultColumns = [];
 List<List<dynamic>> _defaultData = [
   [
-    'Style Name List',
     null,
+    null,
+    '-',
+    '+',
+    1,
+    2,
+    3,
+  ],
+  [
+    'A. Chest Width adsasdad',
+    1,
+    1,
+    1,
+    1,
     1,
     2,
   ],
   [
-    'Style Name Sync...',
+    'A. Chest Width adsasdad',
+    1,
+    1,
+    1,
     1,
     1,
     1,
   ],
   [
-    'Style Name Sync...',
+    'A. Chest Width adsasdad',
+    1,
+    1,
+    1,
     1,
     1,
     1,
   ],
   [
-    'Style Name Sync...',
+    'A. Chest Width adsasdad',
+    1,
+    1,
+    1,
     1,
     1,
     1,
   ]
 ];
 
-class _StyleTableState extends State<StyleTable> {
+class _ChestTableState extends State<ChestTable> {
   @override
   Widget build(BuildContext context) {
     return DataTable(
@@ -51,7 +72,7 @@ class _StyleTableState extends State<StyleTable> {
               label: Text(header),
             )
         else
-          for (var column in List.filled(_defaultData.length, ''))
+          for (var column in List.filled(_defaultData[0].length, ''))
             DataColumn(label: Text(column))
       ],
       headingRowHeight:

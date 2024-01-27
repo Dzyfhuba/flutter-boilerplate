@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/components/chest_table.dart';
 import 'package:flutter_boilerplate/components/gap.dart';
 import 'package:flutter_boilerplate/components/select_measurement.dart';
 import 'package:flutter_boilerplate/components/select_size.dart';
@@ -106,7 +107,11 @@ class _MyHomePageState extends State<MyHomePage> {
             const Gap(10),
 
             // DataTable
-            StyleTable(),
+            const StyleTable(),
+            const SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: ChestTable(),
+            ),
 
             // first component
             Card(
